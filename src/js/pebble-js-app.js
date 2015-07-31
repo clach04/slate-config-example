@@ -6,6 +6,11 @@ Pebble.addEventListener('showConfiguration', function() {
   var url = 'https://rawgit.com/pebble-examples/design-guides-slate-config/master/config/index.html';
   console.log('Showing configuration page: ' + url);
 
+  var ip = null;
+  var ip_placeholder = (ip === null ? 'placeholder="IP Address"' : 'value="' + ip + '" ');
+  console.log("showing configuration");
+  url = "data:text/html,"+encodeURI('<!DOCTYPE html> <html> <head> <title>Configure_Page</title> <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><input type="text" id="ip" ' + ip_placeholder + ' style="height:30px;"/><br><br><button style="width:100px;height:60px;" onclick="saveConf();">Save</button><script type="text/javascript">function saveConf(){var result = {}; result["ip"] = document.getElementById("ip").value;document.location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(result));}</script></body></html><!--.html');
+
   Pebble.openURL(url);
 });
 
